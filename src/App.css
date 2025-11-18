@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+.posts {
+  margin: auto;
+  background-color: aqua;
+  max-width: 70%;
+  border-radius: 20px;
+  border-width: 1px;
+
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
