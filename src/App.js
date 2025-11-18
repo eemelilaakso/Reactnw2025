@@ -9,6 +9,7 @@ const App = () => {
 
   //App komponentin tila
   const[showLaskuri, setShowLaskuri] = useState(false)
+  const[showPosts, setShowPosts] = useState(false)
 
 
   const huomio = () => {
@@ -19,7 +20,11 @@ const App = () => {
     <div className="App">
       <h1>Hello React</h1>
 
-      <Posts />
+      
+
+      {showPosts && <button onClick={() => setShowPosts(!showPosts)}>Piilota Posts</button>}
+      {!showPosts && <button onClick={() => setShowPosts(!showPosts)}>Näytä Posts</button>}
+      {showPosts && <Posts/>}
       
       {showLaskuri && <Laskuri huomio={huomio} />}
       
