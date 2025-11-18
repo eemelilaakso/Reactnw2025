@@ -8,6 +8,7 @@ const Posts = () => {
 //Komponentin tilan määritys
 
 const [posts, setPosts] = useState([])
+const [showPosts, setShowPosts] = useState(false)
 
 
 useEffect(() => {
@@ -19,10 +20,10 @@ useEffect(() => {
 
   return (
     <>
-        <h3>posts from typicode</h3>
+        <h3 onClick={() => setShowPosts(!showPosts)}>Posts from typicode</h3>
 
         {
-          posts && posts.map(p => 
+          showPosts && posts && posts.map(p => 
 
             <div className='posts' key={p.id}>
             <h1>{p.title}</h1>

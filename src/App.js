@@ -21,10 +21,8 @@ const App = () => {
       <h1>Hello React</h1>
 
       
-
-      {showPosts && <button onClick={() => setShowPosts(!showPosts)}>Piilota Posts</button>}
-      {!showPosts && <button onClick={() => setShowPosts(!showPosts)}>Näytä Posts</button>}
-      {showPosts && <Posts/>}
+      
+      <Posts/>
       
       {showLaskuri && <Laskuri huomio={huomio} />}
       
