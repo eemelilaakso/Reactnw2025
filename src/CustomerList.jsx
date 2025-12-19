@@ -1,6 +1,7 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import CustomerService from './services/Customer'
+import Customer from './Customer';
 
 
 const CustomerList = () => {
@@ -22,18 +23,17 @@ useEffect(() => {
 
   return (
     <>
-        <h3 onClick={() => setShowCustomers(!showCustomers)}>Customers</h3>
+        <h2 onClick={() => setShowCustomers(!showCustomers)}>Customers</h2>
 
         {
             showCustomers && customers && customers.map(c => (
-              <h3 key={c.customerId}>{c.companyName}</h3>
-            )
-
+              <Customer key={c.customerId} customer={c} />
+              )
             )
         }
 
     </>
-  );
+  )
 }
 
-export default CustomerList;
+export default CustomerList
