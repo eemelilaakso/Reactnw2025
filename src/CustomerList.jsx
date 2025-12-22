@@ -20,7 +20,7 @@ useEffect(() => {
   .then(data => {
     setCustomers(data)
 })
-},[]
+},[lisäystila]
 )
 
   return (
