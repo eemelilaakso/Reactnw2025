@@ -31,7 +31,7 @@ useEffect(() => {
                 
                 {!lisäystila && <button className="nappi" onClick={() => setLisäystila(true)}>Add new</button>}</h1>
 
-                {lisäystila && <CustomerAdd />}
+                {lisäystila && <CustomerAdd setLisäystila={setLisäystila} />}
 
         {
             showCustomers && customers && customers.map(c => (

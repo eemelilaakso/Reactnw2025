@@ -2,7 +2,7 @@ import './App.css';
 import React, {useState} from 'react';
 import CustomerService from './services/Customer'
 
-const CustomerAdd = () => {
+const CustomerAdd = ({setLisäystila}) => {
 
 
 //Komponentin tilan määritys
@@ -21,11 +21,38 @@ const [newPostalCode, setNewPostalCode] = useState('')
 const [newPhone, setNewPhone] = useState('')
 const [newFax, setNewFax] = useState('')
 
-// onSubmit tapahtumankäsittelijä funktio
 
+// onSubmit tapahtumankäsittelijä funktio
 const handleSubmit = (event) => {
-  alert('Formi submitoitu')
-}
+  event.preventDefault()
+  var newCustomer = {
+    customerId: newCustomerId.toUpperCase(),
+    companyName: newCompanyName,
+    contactName: newContactName,
+    contactTitle: newContactTitle,
+    country: newCountry,
+    address: newAddress,
+    postalCode: newPostalCode,
+    phone: newPhone,
+    fax: newFax
+  }
+
+  CustomerService.create(newCustomer)
+  .then(response => {
+    if (response.status === 200) {
+      alert("Added new Customer: " + newCustomer.companyName)
+    }
+
+      })
+      .catch(error => {
+        alert("Error")
+      })
+
+      setTimeout(() => {
+        setLisäystila(false)
+      }, 500)
+
+    }
 
   return (
     <div id="addNew">
@@ -65,8 +92,9 @@ const handleSubmit = (event) => {
           <div>
           <input type='text' value={newFax} onChange={({target}) => setNewFax(target.value)} placeholder='Fax' required/>  
           </div>
-          
+
           <input type='submit' value='save' />
+          <input type='button' value='back' onClick={() => setLisäystila(false)} />
 
 
         </form>
