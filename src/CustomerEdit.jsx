@@ -47,7 +47,7 @@ const handleSubmit = (event) => {
         setShowMessage(false)
       }, 5000)
 
-      setLisäystila(false)
+      setMuokkaustila(false)
     }
 
       })
@@ -60,7 +60,7 @@ const handleSubmit = (event) => {
         setShowMessage(false)
       }, 6000)
 
-      setLisäystila(false)
+      setMuokkaustila(false)
 
       })
 
@@ -90,9 +90,7 @@ const handleSubmit = (event) => {
           <div>
           <input type='text' value={newCity} onChange={({target}) => setNewCity(target.value)} placeholder='City' required/>
           </div>
-          <div>
-          <input type='text' value={newRegion} onChange={({target}) => setNewRegion(target.value)} placeholder='Region' required/>
-          </div>
+          
           <div>
           <input type='text' value={newPostalCode} onChange={({target}) => setNewPostalCode(target.value)} placeholder='Postal Code' required/>
           </div>
