@@ -44,12 +44,14 @@ const editCustomer = (customer) => {
         <h1><nobr style={{ cursor: 'pointer' }}
                 onClick={() => setShowCustomers(!showCustomers)}> Customers</nobr>
                 
+                
+                
+                {!lisäystila && <button className="nappi" onClick={() => setLisäystila(true)}>Add new</button>}</h1>
+
                 {!lisäystila && !muokkaustila &&
                     <input placeholder="Search by company name" value={search} onChange={handleSearchInputChange} />
                 }
                 
-                {!lisäystila && <button className="nappi" onClick={() => setLisäystila(true)}>Add new</button>}</h1>
-
                 {lisäystila && <CustomerAdd setLisäystila={setLisäystila} 
                 setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}
                 />}
