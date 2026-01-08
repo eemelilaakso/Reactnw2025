@@ -31,6 +31,7 @@ const handleSubmit = (event) => {
     contactTitle: newContactTitle,
     country: newCountry,
     address: newAddress,
+    city: newCity,
     postalCode: newPostalCode,
     phone: newPhone,
     fax: newFax
