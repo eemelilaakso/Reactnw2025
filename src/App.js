@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import './App.css';
+import React, { useState } from 'react'
+import './App.css'
+
 import Laskuri from './Laskuri'
-import Viesti from './Viesti';
 import Posts from './Posts'
 import CustomerList from './CustomerList'
 import Message from './Message'
@@ -10,44 +10,48 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import { BrowserRouter as Router, Switch, Route, Routes } from 'react-router-dom';
-
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 const App = () => {
-
-
-  //App komponentin tila
-  const[showLaskuri, setShowLaskuri] = useState(false)
-  const[showPosts, setShowPosts] = useState(false)
-
-  // Statet messagen näyttämistä varten
-  const[showMessage, setShowMessage] = useState(false)
-  const[message, setMessage] = useState('')
-  const[isPositive, setIsPositive] = useState(false)
-
-
-  const huomio = () => {
-    alert("Huomio!")
-  }
+  const [message, setMessage] = useState('')
+  const [isPositive, setIsPositive] = useState(false)
+  const [showMessage, setShowMessage] = useState(false)
 
   return (
     <div className="App">
-      <h1>Hello React</h1>
+      <Router>
+        <Navbar bg="dark" variant="dark">
+          <Nav className="me-auto">
+            <Nav.Link as={Link} to="/customers">Customers</Nav.Link>
+            <Nav.Link as={Link} to="/laskuri">Laskuri</Nav.Link>
+            <Nav.Link as={Link} to="/posts">Typicode posts</Nav.Link>
+          </Nav>
+        </Navbar>
 
-      {showMessage && <Message message={message} isPositive={isPositive} /> }
+        <h1>Northwind Traders</h1>
 
-      <CustomerList setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage} />
-      
-      <Posts/>
-      
-      {showLaskuri && <Laskuri huomio={huomio} />}
-      
-      {showLaskuri && <button onClick={() => setShowLaskuri(!showLaskuri)}>Piilota laskuri</button>}
-      {!showLaskuri && <button onClick={() => setShowLaskuri(!showLaskuri)}>Näytä laskuri</button>}
+        {showMessage && (
+          <Message message={message} isPositive={isPositive} />
+        )}
 
-      <Viesti teksti="tervehdys app komponentista" />
+        <Routes>
+          <Route
+            path="/customers"
+            element={
+              <CustomerList
+                setMessage={setMessage}
+                setIsPositive={setIsPositive}
+                setShowMessage={setShowMessage}
+              />
+            }
+          />
+
+          <Route path="/laskuri" element={<Laskuri />} />
+          <Route path="/posts" element={<Posts />} />
+        </Routes>
+      </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
