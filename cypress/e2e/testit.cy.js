@@ -6,10 +6,11 @@ describe('Testit sovellus', function () {
 
   it('Sivu avautuu ja näyttää datarivejä', function () {
       cy.visit('http://localhost:3000')
+      
+      cy.contains('Laskuri')
       cy.contains('Customers')
-      cy.contains('OSP') // jos on saatu dataa kannasta
-      cy.contains('poista') // jos on saatu dataa kannasta
-      cy.contains('Tässä projektissa harjoitellaan web sovellusten testausta')
+      cy.contains('Northwind Traders')
+      cy.contains('Tässä projektissa harjoitellaan web sovellusten testausta') //Ei löydy
   })
 
   })
