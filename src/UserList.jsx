@@ -1,6 +1,8 @@
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import UserService from './services/User'
+import UserAdd from './UserAdd';
+
 
 
 const UserList = ({setIsPositive, setShowMessage, setMessage}) => {
@@ -38,7 +40,8 @@ const editUsers = (user) => {
     <>
         <h1><nobr> Users</nobr>
                 
-                
+                {lisäystila && <UserAdd setLisäystila={setLisäystila} 
+                setIsPositive={setIsPositive} setMessage={setMessage} setShowMessage={setShowMessage}/>}
                 
                 {!lisäystila && <button className="nappi" onClick={() => setLisäystila(true)}>Add new</button>}</h1>
 
@@ -46,6 +49,7 @@ const editUsers = (user) => {
                     <input placeholder="Search by Last Name" value={search} onChange={handleSearchInputChange} />
                 }
 
+                {!lisäystila && !muokkaustila && 
                 <table id="userTable">
                     <thead>                        
                         <th>First Name</th>
@@ -76,9 +80,9 @@ const editUsers = (user) => {
 
                     </tbody>
                     </table>
-
-                    </>
-        )
+                    }
+                </>
+            )
         }
 
 export default UserList
