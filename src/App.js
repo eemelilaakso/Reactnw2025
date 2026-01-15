@@ -4,6 +4,7 @@ import './App.css'
 import Laskuri from './Laskuri'
 import Posts from './Posts'
 import CustomerList from './CustomerList'
+import UserList from './UserList'
 import Message from './Message'
 
 import Navbar from 'react-bootstrap/Navbar'
@@ -23,6 +24,7 @@ const App = () => {
         <Navbar bg="dark" variant="dark">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/customers">Customers</Nav.Link>
+            <Nav.Link as={Link} to="/users">Users</Nav.Link>
             <Nav.Link as={Link} to="/laskuri">Laskuri</Nav.Link>
             <Nav.Link as={Link} to="/posts">Typicode posts</Nav.Link>
           </Nav>
@@ -46,8 +48,20 @@ const App = () => {
             }
           />
 
+          <Route
+            path="/users"
+            element={
+              <UserList
+                setMessage={setMessage}
+                setIsPositive={setIsPositive}
+                setShowMessage={setShowMessage}
+              />
+            }
+          />
+
           <Route path="/laskuri" element={<Laskuri />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/users" element={<UserList />} />
         </Routes>
       </Router>
     </div>
