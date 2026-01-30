@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseUrl = "https://localhost:7220/api/users"
+const baseUrl = "https://nweemeli-dqegc4f0h6b7dmd0.canadacentral-01.azurewebsites.net/api/users"
 
 const getAll = () => {
         const request = axios.get(baseUrl)

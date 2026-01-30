@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 
 import Laskuri from './Laskuri'
@@ -20,10 +20,26 @@ const [message, setMessage] = useState('')
 const [isPositive, setIsPositive] = useState(false)
 const [showMessage, setShowMessage] = useState(false)
 const [loggedInUser, setLoggedInUser] = useState('')
+const [accessLevelId, setAccessLevelId] = useState(null)
 
+useEffect(() => {
+  const storedUser = localStorage.getItem("username")
+  const storedAccessLevelId = localStorage.getItem("accessLevelId")
+
+  if (storedUser) {
+    setLoggedInUser(storedUser)
+  }
+
+  if (storedAccessLevelId) {
+    setAccessLevelId(parseInt(storedAccessLevelId, 10))
+  }
+}, [])
+
+// Logout toiminto
 const logout = () => {
   localStorage.clear()
   setLoggedInUser('')
+          setAccessLevelId(null)
 }
 
 
@@ -37,12 +53,18 @@ const logout = () => {
 
 { loggedInUser &&
       //<Login setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} />
-
+      //{accessLevelId === 1 && (<Nav.Link as={Link} to="/users">Users</Nav.Link>)}
+      
       <Router>
         <Navbar bg="dark" variant="dark">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/customers">Customers</Nav.Link>
+
+            
             <Nav.Link as={Link} to="/users">Users</Nav.Link>
+                  
+            
+
             <Nav.Link as={Link} to="/laskuri">Laskuri</Nav.Link>
             <Nav.Link as={Link} to="/posts">Typicode posts</Nav.Link>
             <button onClick={() => logout()}>Logout</button>
@@ -80,7 +102,7 @@ const logout = () => {
 
           <Route path="/laskuri" element={<Laskuri />} />
           <Route path="/posts" element={<Posts />} />
-          <Route path="/users" element={<UserList />} />
+          
         </Routes>
       </Router>
 }

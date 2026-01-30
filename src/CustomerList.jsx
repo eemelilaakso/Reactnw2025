@@ -21,6 +21,10 @@ const [search, setSearch] = useState("")
 
 
 useEffect(() => {
+
+  const token = localStorage.getItem('token')
+  CustomerService.setToken(token)
+
   CustomerService.getAll()
   .then(data => {
     setCustomers(data)

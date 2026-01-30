@@ -31,6 +31,7 @@ const handleSubmit = (event) => {
 
         //Asetetaan kirjautunut käyttäjä App komponentin stateen
         setLoggedInUser(response.data.username)
+        
 
         //console.log(response.data.token)
 
