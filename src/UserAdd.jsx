@@ -15,7 +15,10 @@ const [newEmail, setNewEmail] = useState('')
 const [newAccesslevelId, setNewAccesslevelId] = useState(2)
 const [newUsername, setNewUsername] = useState('')
 const [newPassword, setNewPassword] = useState('')
+const [confirmPassword, setConfirmPassword] = useState('')
 
+
+const passwordsMatch = newPassword === confirmPassword
 
 // onSubmit tapahtumankäsittelijä funktio
 const handleSubmit = (event) => {
@@ -27,9 +30,24 @@ const handleSubmit = (event) => {
         accesslevelId: parseInt(newAccesslevelId),
         username: newUsername,
         password: md5(newPassword) // Salataan md5 kirjaston metodilla
+
+        
     }
+
+ if (!passwordsMatch) {
+    setMessage("Passwords do not match")
+    setIsPositive(false)
+    setShowMessage(true)
+
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 4000)
+
+    return
+  }
     
     console.log(newUser)
+
 
     UserService.create(newUser)
     .then(response => {
@@ -87,8 +105,20 @@ const handleSubmit = (event) => {
                 <input type="password" value={newPassword} placeholder="Password"
                     onChange={({ target }) => setNewPassword(target.value)} />
             </div>
+            <div>
+            <input type="password" value={confirmPassword}
+              placeholder="Confirm password"
+              onChange={({ target }) => setConfirmPassword(target.value)}
+              />
+
+  {!passwordsMatch && confirmPassword.length > 0 && (
+    <p style={{ color: 'red', margin: 0 }}>
+      Passwords do not match
+    </p>
+  )}
+</div>
             
-         <input type='submit' value='save' />
+         <input type='submit' value='save' disabled={!passwordsMatch || newPassword.length === 0} />
          <input type='button' value='back' onClick={() => setLisäystila(false)} />
        </form>
 
