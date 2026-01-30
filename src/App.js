@@ -24,7 +24,7 @@ const [accessLevelId, setAccessLevelId] = useState(null)
 
 useEffect(() => {
   const storedUser = localStorage.getItem("username")
-  const storedAccessLevelId = localStorage.getItem("accessLevelId")
+  const storedAccessLevelId = localStorage.getItem("accesslevelId")
 
   if (storedUser) {
     setLoggedInUser(storedUser)
@@ -60,8 +60,9 @@ const logout = () => {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/customers">Customers</Nav.Link>
 
-            
-            <Nav.Link as={Link} to="/users">Users</Nav.Link>
+            {accessLevelId === 1 && (
+              <Nav.Link as={Link} to="/users">Users</Nav.Link>
+            )}
                   
             
 
