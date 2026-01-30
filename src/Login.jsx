@@ -25,10 +25,13 @@ const handleSubmit = (event) => {
     .then(response => {
       if (response.status === 200) {
 
-        console.log('Response from login:');
-        console.log(response)
+        localStorage.setItem("username", response.data.username)
+        localStorage.setItem("accesslevelId", response.data.accesslevelId)
+        localStorage.setItem("token", response.data.token)
 
-       setMessage(`Logged in User: ${userForAuth.username}`)
+        //console.log(response.data.token)
+
+       setMessage(`Login successful! Welcome ${userForAuth.username}`)
        setIsPositive(true)
        setShowMessage(true)
       
