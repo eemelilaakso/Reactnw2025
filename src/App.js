@@ -15,14 +15,28 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 const App = () => {
-  const [message, setMessage] = useState('')
-  const [isPositive, setIsPositive] = useState(false)
-  const [showMessage, setShowMessage] = useState(false)
+
+const [message, setMessage] = useState('')
+const [isPositive, setIsPositive] = useState(false)
+const [showMessage, setShowMessage] = useState(false)
+const [loggedInUser, setLoggedInUser] = useState('')
+
+const logout = () => {
+  localStorage.clear()
+  setLoggedInUser('')
+}
+
 
   return (
     <div className="App">
 
-      <Login setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} />
+    {!loggedInUser &&
+      <Login setMessage={setMessage} setIsPositive={setIsPositive} 
+      setShowMessage={setShowMessage} setLoggedInUser={setLoggedInUser} />
+    }
+
+{ loggedInUser &&
+      //<Login setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} />
 
       <Router>
         <Navbar bg="dark" variant="dark">
@@ -31,6 +45,7 @@ const App = () => {
             <Nav.Link as={Link} to="/users">Users</Nav.Link>
             <Nav.Link as={Link} to="/laskuri">Laskuri</Nav.Link>
             <Nav.Link as={Link} to="/posts">Typicode posts</Nav.Link>
+            <button onClick={() => logout()}>Logout</button>
           </Nav>
         </Navbar>
 
@@ -68,6 +83,7 @@ const App = () => {
           <Route path="/users" element={<UserList />} />
         </Routes>
       </Router>
+}
     </div>
   )
 }
