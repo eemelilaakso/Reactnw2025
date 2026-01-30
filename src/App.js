@@ -6,6 +6,7 @@ import Posts from './Posts'
 import CustomerList from './CustomerList'
 import UserList from './UserList'
 import Message from './Message'
+import Login from './Login'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
@@ -20,6 +21,9 @@ const App = () => {
 
   return (
     <div className="App">
+
+      <Login setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} />
+
       <Router>
         <Navbar bg="dark" variant="dark">
           <Nav className="me-auto">
