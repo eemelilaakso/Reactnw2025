@@ -22,6 +22,13 @@ const [showMessage, setShowMessage] = useState(false)
 const [loggedInUser, setLoggedInUser] = useState('')
 const [accessLevelId, setAccessLevelId] = useState(null)
 
+// Logout toiminto
+const logout = () => {
+  localStorage.clear()
+  setLoggedInUser('')
+          setAccessLevelId(null)
+}
+
 useEffect(() => {
   const storedUser = localStorage.getItem("username")
   const storedAccessLevelId = localStorage.getItem("accesslevelId")
@@ -35,12 +42,7 @@ useEffect(() => {
   }
 }, [])
 
-// Logout toiminto
-const logout = () => {
-  localStorage.clear()
-  setLoggedInUser('')
-          setAccessLevelId(null)
-}
+
 
 
   return (
@@ -54,12 +56,14 @@ const logout = () => {
 { loggedInUser &&
       //<Login setMessage={setMessage} setIsPositive={setIsPositive} setShowMessage={setShowMessage} />
       //{accessLevelId === 1 && (<Nav.Link as={Link} to="/users">Users</Nav.Link>)}
-      
+      //Vaatii sivun päivityksen ennenkuin accessLevelId päivittyy oikein hmm...
+
       <Router>
         <Navbar bg="dark" variant="dark">
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/customers">Customers</Nav.Link>
 
+            
             {accessLevelId === 1 && (
               <Nav.Link as={Link} to="/users">Users</Nav.Link>
             )}
