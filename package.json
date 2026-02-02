@@ -2,7 +2,7 @@
   "homepage": "https://eemelilaakso.github.io/Reactnw2025/",
   "name": "reactnw2025",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -19,8 +19,6 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-        "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
